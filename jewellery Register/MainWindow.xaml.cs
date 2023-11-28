@@ -316,7 +316,7 @@ namespace jewellery_Register
 
 
             docWin.Content = myGrid;
-            docWin.Show();
+            //docWin.Show();
             PrintDialog printDlg = new PrintDialog();
             printDlg.PrintVisual(myGrid, "receipt printing ..");
             printDlg.PrintVisual(myGrid, "receipt printing ..");
