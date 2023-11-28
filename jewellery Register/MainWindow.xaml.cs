@@ -50,6 +50,7 @@ namespace jewellery_Register
                     String name = jewel_text_box.Text;
                     String goldRate = gold_rate_text_box.Text;
                     String total=total_text_box.Text;
+                    String labor = labor_text_box.Text;
 
                     DataItem.Add(new Item
                     {
@@ -60,6 +61,7 @@ namespace jewellery_Register
                         total_weight = totalWeight,
                         gold_rate=  goldRate,
                         total=total,
+                        labor = labor,  
                     });
 
                     
@@ -163,13 +165,11 @@ namespace jewellery_Register
         {
             documentView docWin = new documentView();
             // Create the application's main window
-            docWin.Title = "Grid Sample";
+            docWin.Title = "Print";
             docWin.Width = 288;
 
-            ScrollViewer a = new ScrollViewer();
             // Create the Grid
             Grid myGrid = new Grid();
-            a.Content=myGrid;
             
             myGrid.Width = 288;
             myGrid.HorizontalAlignment = HorizontalAlignment.Left;
@@ -193,7 +193,7 @@ namespace jewellery_Register
             txt1.Text = "MW Gold Laboratory";
             txt1.FontSize = 20;
             txt1.FontWeight = FontWeights.Bold;
-            txt1.Height = 100;
+            txt1.Height = 50;
             txt1.HorizontalAlignment = HorizontalAlignment.Center;
             Grid.SetColumnSpan(txt1, 3);
             Grid.SetRow(txt1, 0);
@@ -227,109 +227,81 @@ namespace jewellery_Register
             //myGrid.Children.Add(txt11);
 
 
-            // Heading of Item: Row 3
-            TextBlock txt2 = new TextBlock();
-            txt2.Text = "Name";
-            txt2.FontSize = 12;
-            txt2.FontWeight = FontWeights.Bold;
-            Grid.SetRow(txt2, 3);
-            Grid.SetColumn(txt2, 0);
-
-            // Add the third text cell to the Grid
-            TextBlock txt3 = new TextBlock();
-            txt3.Text = "Pure Gold";
-            txt3.FontSize = 12;
-            txt3.FontWeight = FontWeights.Bold;
-            Grid.SetRow(txt3, 3);
-            Grid.SetColumn(txt3, 1);
-
-            // Add the fourth text cell to the Grid
-            TextBlock txt4 = new TextBlock();
-            txt4.Text = "Price";
-            txt4.FontSize = 12;
-            txt4.FontWeight = FontWeights.Bold;
-            Grid.SetRow(txt4, 3);
-            Grid.SetColumn(txt4, 2);
-
-
             RowDefinition rowDef3 = new RowDefinition();
-            RowDefinition rowDef5 = new RowDefinition();
-            RowDefinition rowDef4 = new RowDefinition();
-            RowDefinition rowDef6 = new RowDefinition();
+          
             myGrid.RowDefinitions.Add(rowDef3);
-            myGrid.RowDefinitions.Add(rowDef4);
-            myGrid.RowDefinitions.Add(rowDef5);
-            myGrid.RowDefinitions.Add(rowDef6);
+           
 
             //Headings Added
             myGrid.Children.Add(txt1);
-            myGrid.Children.Add(txt2);
-            myGrid.Children.Add(txt3);
-            myGrid.Children.Add(txt4);
+           
 
             int i = 0;
             double totalPrice=0;
             int row = 0;
-            //foreach (Item item in DataItem)
-            //{
-            //    RowDefinition rowDef2 = new RowDefinition();
-            //    myGrid.RowDefinitions.Add(rowDef2);
-            //    row = i + 4;
-
-            //    TextBlock txt5 = new TextBlock();
-
-            //    txt5.Text = item.name;
-            //    Grid.SetRow(txt5, row);
-            //    Grid.SetColumn(txt5, 0);
-
-            //    TextBlock txt6 = new TextBlock();
-
-            //    txt6.Text = item.pure_gold;
-            //    Grid.SetRow(txt6, row);
-            //    Grid.SetColumn(txt6, 1);
-
-            //    // Add the final text cell to the Grid
-            //    TextBlock txt7 = new TextBlock();
-
-            //    txt7.Text = item.total;
-            //    Grid.SetRow(txt7, 2);
-            //    Grid.SetColumn(txt7, row);
-            //    totalPrice=(double.Parse(item.total)).ToString();
-
-            //    myGrid.Children.Add(txt5);
-            //    myGrid.Children.Add(txt6);
-            //    myGrid.Children.Add(txt7);
-
-            //}
+            
             ObservableCollection<DisplayItem> dItems = new ObservableCollection<DisplayItem>();
            
             foreach(Item item in DataItem)
             {
                 dItems.Add(new DisplayItem
                 {
-                    ID = item.id,
                     Name = item.name,
 
                     PureGold = item.pure_gold,
-                    Total = item.total
+                    Ratti=item.ratti,
+                    Gold_Weight=item.total_weight,
+         
                 }) ;
                 totalPrice += double.Parse(item.total);
             }
 
             DataGrid dataGrid = new DataGrid();
-            dataGrid.ColumnWidth=50;
             
             dataGrid.ItemsSource = dItems;
+            dataGrid.FontWeight = FontWeights.Bold;
             RowDefinition rowDef2 = new RowDefinition();
             myGrid.RowDefinitions.Add(rowDef2);
-            Grid.SetRow(dataGrid, 4);
+            Grid.SetRow(dataGrid, 3);
             Grid.SetColumnSpan(dataGrid, 3);
             myGrid.Children.Add(dataGrid);
+            myGrid.ShowGridLines = false;
 
 
+
+            if (gold_rate_text_box.Text != "") {
+                ObservableCollection<Cash> dCash = new ObservableCollection<Cash>();
+
+                foreach (Item item in DataItem)
+                {
+                    dCash.Add(new Cash
+                    {
+                        Name = item.name,
+
+                        Labor = item.labor,
+                        Total = item.total
+                    });
+                    totalPrice += double.Parse(item.total);
+                }
+
+                DataGrid dataGrid2 = new DataGrid();
+
+                dataGrid2.ItemsSource = dCash;
+                dataGrid2.FontWeight = FontWeights.Bold;
+                RowDefinition rowDef8 = new RowDefinition();
+                myGrid.RowDefinitions.Add(rowDef8);
+                Grid.SetRow(dataGrid2, 4);
+                Grid.SetColumnSpan(dataGrid2, 3);
+                myGrid.Children.Add(dataGrid2);
+                myGrid.ShowGridLines = false;
+
+
+            }
 
             RowDefinition rowDef7 = new RowDefinition();
             myGrid.RowDefinitions.Add(rowDef7);
+             RowDefinition rowDef4 = new RowDefinition();
+            myGrid.RowDefinitions.Add(rowDef4);
 
 
             TextBlock txt12 = new TextBlock();
@@ -343,9 +315,10 @@ namespace jewellery_Register
 
 
 
-            docWin.Content = a;
+            docWin.Content = myGrid;
             docWin.Show();
             PrintDialog printDlg = new PrintDialog();
+            printDlg.PrintVisual(myGrid, "receipt printing ..");
             printDlg.PrintVisual(myGrid, "receipt printing ..");
         }
 

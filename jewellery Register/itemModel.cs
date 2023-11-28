@@ -17,16 +17,28 @@ namespace jewellery_Register
         public string pure_gold { get; set; }
 
         public string gold_rate { get; set; }
+        public string labor { get; set; }
         
+
         public string total { get; set; }
     }
     public class DisplayItem {
-        public int ID { get; set; }
         public string Name { get; set; }
 
         public string PureGold { get; set; }
+        public string Ratti { get; set; }
 
+        public string Gold_Weight { get; set; }
+        
+
+    }
+    public class Cash
+    {
+        public string Name { get; set; }
+
+        public string Labor { get; set; }
         public string Total { get; set; }
+
 
     }
 }
