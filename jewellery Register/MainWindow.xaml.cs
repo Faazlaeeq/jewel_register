@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -530,18 +531,23 @@ namespace jewellery_Register
 
             //Create array of allowed column 
 
-            bool[] allowedColumns = { 
-                ckname.IsChecked.Value,
-                ckratti.IsChecked.Value,
-                cktWeight.IsChecked.Value,
-                ckpGold.IsChecked.Value,
-                cklabor.IsChecked.Value,
-                cktotal.IsChecked.Value,
-                true,
-                true
-            };
-            // Create a FlowDocument dynamically.  
-            FlowDocument doc = CreateFlowDocument(DateTime.Now,allowedColumns);
+            Dictionary<string, bool> goldAllowedColumns = new Dictionary<string, bool>();
+
+            goldAllowedColumns.Add("Name", ckname.IsChecked ?? true);
+            goldAllowedColumns.Add("Ratti", ckratti.IsChecked ?? true);
+            goldAllowedColumns.Add("Gold", cktWeight.IsChecked ?? true);
+            goldAllowedColumns.Add("Pure", ckpGold.IsChecked ?? true);
+
+            Dictionary<string, bool> cashAllowedColumns = new Dictionary<string, bool>();
+
+            cashAllowedColumns.Add("Name", ckname.IsChecked ?? true);
+            cashAllowedColumns.Add("Labor", cklabor.IsChecked ?? true);
+            cashAllowedColumns.Add("Total", cktotal.IsChecked ?? true);
+
+
+
+        // Create a FlowDocument dynamically.  
+        FlowDocument doc = CreateFlowDocument(DateTime.Now, goldAllowedColumns, cashAllowedColumns);
             doc.Name = "FlowDoc";
             // Create IDocumentPaginatorSource from FlowDocument  
             IDocumentPaginatorSource idpSource = doc;
@@ -551,7 +557,7 @@ namespace jewellery_Register
             dwin.Show();    
             //printDlg.PrintDocument(idpSource.DocumentPaginator, "Hello WPF Printing.");
         }
-        public FlowDocument CreateFlowDocument(DateTime date, bool[] allowedColumns)
+        public FlowDocument CreateFlowDocument(DateTime date, Dictionary<string, bool> goldAC,Dictionary<string,bool> cashAC)
         {
             // Create a new flow document
             FlowDocument flowDoc = new FlowDocument();
@@ -599,40 +605,44 @@ namespace jewellery_Register
             table.Margin = new Thickness(2, 10, 2, 10);
 
             // Generate required columns for the table
-            int noOfAllowedColumns = 0;
+            //int noOfAllowedColumns = 0;
 
-            foreach(bool allowedColumn in allowedColumns)
-            {
-                if (allowedColumn)
-                {
-                    noOfAllowedColumns++;
-                }
-            }  
-
-            int columnsCount = noOfAllowedColumns-2;
+            //foreach(bool allowedColumn in allowedColumns.Values)
+            //{
+            //    if (allowedColumn)
+            //    {
+            //        noOfAllowedColumns++;
+            //    }
+            //}  
+            int gColCount = goldAC.Count(e => e.Value == true);
             
-            for(int i = 0; i < noOfAllowedColumns; i++)
+
+
+
+            if (goldAC["Name"] == true)
             {
-                if (columnsCount > 0)
-                {
-                    if (i == 0)
-                    {
-                        table.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / columnsCount)*1.2)) });
+                table.Columns.Add(new TableColumn());
 
-                    }
-                    if (i == 2)
-                    {
-                        table.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / columnsCount) * 0.4)) });
-
-                    }
-                    if (i == 4 || i == 5 ||i==7)
-                    {
-                        continue;
-                    }
-                    
-                    table.Columns.Add(new TableColumn());
-                }
             }
+            if (goldAC["Ratti"] == true)
+            {
+                table.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.8)) });
+
+            }
+            if (goldAC["Gold"] == true)
+            {
+                table.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.8)) });
+
+            }
+            if (goldAC["Pure"] == true)
+            {
+                table.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.3)) });
+                table.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.8)) });
+
+
+            }
+        
+            
 
           
             // Create a row group for the table
@@ -646,24 +656,21 @@ namespace jewellery_Register
 
             // Generata Header cells according to data
 
-            if (allowedColumns[0])
+            if (goldAC["Name"]==true)
             {
                 headerRow.Cells.Add(new TableCell(new Paragraph(new Run("Name"))));
             }
-            if (allowedColumns[1])
+            if (goldAC["Ratti"]==true)
             {
                 headerRow.Cells.Add(new TableCell(new Paragraph(new Run("Ratti"))));
             }
-            if (allowedColumns[2])
+            if (goldAC["Gold"]==true)
             {
-                headerRow.Cells.Add(new TableCell(new Paragraph(new Run("Gold "))));
+                headerRow.Cells.Add(new TableCell(new Paragraph(new Run("Gold"))));
             }
-            if (allowedColumns[3])
+            if (goldAC["Pure"]==true)
             {
                 headerRow.Cells.Add(new TableCell(new Paragraph(new Run("L/D"))));
-            }
-            if (allowedColumns[3])
-            {
                 headerRow.Cells.Add(new TableCell(new Paragraph(new Run("Pure"))));
             }
 
@@ -685,27 +692,25 @@ namespace jewellery_Register
                 productRow.FontSize = 16;
                 productRow.FontFamily = new FontFamily("Times New Roman");
                 // Generata cells according to data
-                if (allowedColumns[0])
+                if (goldAC["Name"]==true)
                 {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.name))));
                 }
-                if (allowedColumns[1])
+                if (goldAC["Ratti"]==true)
                 {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.ratti))));
                 }
-                if (allowedColumns[2])
+                if (goldAC["Gold"]==true)
                 {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.total_weight))));
                 }
 
-                if (allowedColumns[3])
+                if (goldAC["Pure"]==true)
                 {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.goldStatus))));
-                }
-                if (allowedColumns[3])
-                {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.pure_gold))));
                 }
+               
 
 
                 // Add the product row to the row group
@@ -734,28 +739,22 @@ namespace jewellery_Register
             
 
 
-            for (int i = 0; i < noOfAllowedColumns; i++)
+            if (cashAC["Name"] == true)
             {
-                if (columnsCount > 0)
-                {
-                    if (i == 0)
-                    {
-                        table2.Columns.Add(new TableColumn() { Width = new GridLength((pageWidth / columnsCount)) });
+                table2.Columns.Add(new TableColumn());
 
-                    }
-                    if (i == 1 || i == 2 || i == 3 ||i==6)
-                    {
-                        continue;
-                    }
-                    if (i == 4)
-                    {
-                        table2.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / columnsCount) * 0.4)) });
+            }
+            if (cashAC["Labor"] == true)
+            {
+                table2.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.8)) });
 
-                    }
+            }
+            if (cashAC["Total"] == true)
+            {
 
-                    table2.Columns.Add(new TableColumn() );
+                table2.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.3)) });
+                table2.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.8)) });
 
-                }
             }
 
 
@@ -770,21 +769,17 @@ namespace jewellery_Register
 
             // Generata Header cells according to data
 
-            if (allowedColumns[0])
+            if (cashAC["Name"] == true)
             {
                 headerRow2.Cells.Add(new TableCell(new Paragraph(new Run("Name"))));
             }
-            
-            if (allowedColumns[4])
+            if (cashAC["Labor"] == true)
             {
                 headerRow2.Cells.Add(new TableCell(new Paragraph(new Run("Labor"))));
             }
-            if (allowedColumns[5])
+            if (cashAC["Total"] == true)
             {
                 headerRow2.Cells.Add(new TableCell(new Paragraph(new Run("L/D"))));
-            }
-            if (allowedColumns[5])
-            {
                 headerRow2.Cells.Add(new TableCell(new Paragraph(new Run("Total"))));
             }
 
@@ -803,21 +798,17 @@ namespace jewellery_Register
                 productRow.FontSize = 16;
                 productRow.FontFamily = new FontFamily("Times New Roman");
                 // Generata cells according to data
-                if (allowedColumns[0])
+                if (cashAC["Name"] == true)
                 {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.name))));
                 }
-            
-                if (allowedColumns[4])
+                if (cashAC["Labor"] == true)
                 {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.labor))));
                 }
-                if (allowedColumns[5])
+                if (cashAC["Total"] == true)
                 {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.cashStatus))));
-                }
-                if (allowedColumns[5])
-                {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.total))));
                 }
 
@@ -907,6 +898,5 @@ namespace jewellery_Register
         }
     }
 
-
-
-}
+       
+    }
