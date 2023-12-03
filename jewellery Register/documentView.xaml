@@ -8,5 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="288"
       Title="documentView">
 
-    <Grid/>
+    <Grid>
+        <FlowDocumentReader x:Name="docViewer"></FlowDocumentReader>
+    </Grid>
 </Window>

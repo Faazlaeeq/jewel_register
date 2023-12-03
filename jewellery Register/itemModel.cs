@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,18 +22,22 @@ namespace jewellery_Register
         
 
         public string total { get; set; }
+
+        public string cashStatus { get; set; }
+        public string goldStatus { get; set; }
     }
-    public class DisplayItem {
+    public class DisplayItem:Item {
         public string Name { get; set; }
 
-        public string PureGold { get; set; }
+        public string Gold_Weight { get; set; }
         public string Ratti { get; set; }
 
-        public string Gold_Weight { get; set; }
+        public string PureGold { get; set; }
         
 
     }
-    public class Cash
+
+    public class Cash:Item
     {
         public string Name { get; set; }
 

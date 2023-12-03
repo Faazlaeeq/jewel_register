@@ -6,17 +6,17 @@
         xmlns:local="clr-namespace:jewellery_Register"
         xmlns:Collections="clr-namespace:System.Collections;assembly=System.Runtime" x:Class="jewellery_Register.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="800">
+        Title="Jewellery Register | MW GoldLab Update" Height="550" Width="800">
     <Grid >
 
 
-        <DataGrid x:Name="items_list" Margin="0,313,0,0" ScrollViewer.CanContentScroll="True" IsReadOnly="True"/>
+        <DataGrid x:Name="items_list" Margin="0,313,0,0" ScrollViewer.CanContentScroll="True" IsReadOnly="True" KeyUp="items_list_KeyUp"/>
         <TextBox x:Name="num1" HorizontalAlignment="Left" Margin="565,45,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="216" TextChanged="num1_TextChanged" Uid="tw" Height="25" FontFamily="Source Code Pro" FontSize="22" TabIndex="5" GotFocus="num1_GotFocus"/>
         <TextBox x:Name="num2" HorizontalAlignment="Left" Margin="565,74,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="216" TextChanged="num2_TextChanged" Height="26" FontFamily="Source Code Pro" FontSize="22" TabIndex="6" GotFocus="num2_GotFocus"/>
         <TextBox x:Name="num3" HorizontalAlignment="Left" Margin="565,106,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="216" TextChanged="num3_TextChanged" Height="26" FontFamily="Source Code Pro" FontSize="22" TabIndex="7" GotFocus="num3_GotFocus"/>
         <Label Content="Sum" HorizontalAlignment="Left" Margin="644,10,0,0" VerticalAlignment="Top" Height="37" Width="104" FontFamily="Source Code Pro" FontSize="22"/>
         <TextBox x:Name="numTotal" HorizontalAlignment="Left" Margin="565,144,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="216" IsEnabled="False" Height="24" FontFamily="Source Code Pro" FontSize="22"/>
-        <Grid Margin="10,11,346,235">
+        <Grid Margin="10,11,0,0" Height="288" VerticalAlignment="Top" HorizontalAlignment="Left" Width="550">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -27,14 +27,17 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Label Content="Jewellery" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="37" Width="104" FontFamily="Source Code Pro" FontSize="22"/>
 
-            <ComboBox x:Name="jewel_text_box" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="216" SelectedIndex="0" Height="31" FontFamily="Source Code Pro" FontSize="22" TabIndex="0" Grid.Column="1" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="144*"/>
+                <ColumnDefinition Width="170*"/>
+                <ColumnDefinition Width="33*"/>
+                <ColumnDefinition Width="203*"/>
+
+            </Grid.ColumnDefinitions>
+            <Label Content="Jewellery" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="36" Width="104" FontFamily="Source Code Pro" FontSize="22"/>
+
+            <ComboBox x:Name="jewel_text_box" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="165" SelectedIndex="0" Height="32" FontFamily="Source Code Pro" FontSize="22" TabIndex="0" Grid.Column="1">
                 <ComboBoxItem x:Name="comboBoxItem" Content="Bali" />
                 <ComboBoxItem Content="Ring"/>
                 <ComboBoxItem Content="D Bali"/>
@@ -45,24 +48,43 @@
                 <ComboBoxItem Content="Testing"/>
                 <TextBox  Width="150"/>
             </ComboBox>
-            <Label Content="Total Weight" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="37" Width="137" FontFamily="Source Code Pro" FontSize="22" />
-            <TextBox x:Name="total_weight_text_box" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="216" TextChanged="total_weight_text_box_TextChanged" Uid="tw" Height="25" FontFamily="Source Code Pro" FontSize="22" TabIndex="1" KeyDown="total_weight_text_box_KeyDown" GotFocus="total_weight_text_box_GotFocus" />
-            <Label Content="Ratti" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="37" Width="62" FontFamily="Source Code Pro" FontSize="22" />
-            <TextBox x:Name="ratti_text_box" Grid.Row="2"  Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="216" TextChanged="ratti_text_box_TextChanged" Height="26" FontFamily="Source Code Pro" FontSize="22" TabIndex="2" KeyDown="ratti_text_box_KeyDown" GotFocus="ratti_text_box_GotFocus" />
+            <Label Content="Total Weight" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="36" Width="137" FontFamily="Source Code Pro" FontSize="22" />
+            <TextBox x:Name="total_weight_text_box" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="165" TextChanged="total_weight_text_box_TextChanged" Uid="tw" Height="24" FontFamily="Source Code Pro" FontSize="22" TabIndex="1" KeyDown="total_weight_text_box_KeyDown" GotFocus="total_weight_text_box_GotFocus" />
+            <Label Content="Ratti" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="36" Width="62" FontFamily="Source Code Pro" FontSize="22" />
+            <TextBox x:Name="ratti_text_box" Grid.Row="2"  Grid.Column="1"  TextWrapping="Wrap" Text="0" VerticalAlignment="Center" TextChanged="ratti_text_box_TextChanged" Height="26" FontFamily="Source Code Pro" FontSize="22" TabIndex="2" KeyDown="ratti_text_box_KeyDown" GotFocus="ratti_text_box_GotFocus" HorizontalAlignment="Left" Width="165" />
             <Label Content="Pure Gold" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="38" Width="113" FontFamily="Source Code Pro" FontSize="22" />
-            <TextBox x:Name="pure_gold_textbox" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="216" IsEnabled="False" Height="25" FontFamily="Source Code Pro" FontSize="22" TextChanged="pure_gold_textbox_TextChanged" />
+            <TextBox x:Name="pure_gold_textbox" Grid.Row="3" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" IsEnabled="False" Height="24" FontFamily="Source Code Pro" FontSize="22" TextChanged="pure_gold_textbox_TextChanged" HorizontalAlignment="Left" Width="164" Margin="0,10,0,0" Grid.Column="1" />
             <Label Content="Gold Rate" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="38" Width="113" FontFamily="Source Code Pro" FontSize="22" />
-            <TextBox x:Name="gold_rate_text_box" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="216" IsEnabled="True" Height="25" FontFamily="Source Code Pro" FontSize="22" TextChanged="gold_rate_text_box_TextChanged" KeyDown="gold_rate_text_box_KeyDown" TabIndex="3" />
+            <TextBox x:Name="gold_rate_text_box" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" IsEnabled="True" Height="24" FontFamily="Source Code Pro" FontSize="22" TextChanged="gold_rate_text_box_TextChanged" KeyDown="gold_rate_text_box_KeyDown" TabIndex="3" HorizontalAlignment="Left" Width="165" />
 
             <Label Content="Labor" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="38" Width="113" FontFamily="Source Code Pro" FontSize="22" />
-            <TextBox x:Name="labor_text_box" IsEnabled="False" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="216" Height="25" FontFamily="Source Code Pro" FontSize="22" TextChanged="labor_text_box_TextChanged" />
-            
+            <TextBox x:Name="labor_text_box" IsEnabled="False" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="165" Height="24" FontFamily="Source Code Pro" FontSize="22" TextChanged="labor_text_box_TextChanged" />
+
             <Label Content="Total" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="38" Width="113" FontFamily="Source Code Pro" FontSize="22" />
-            <TextBox x:Name="total_text_box" IsEnabled="false" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="216"  Height="25" FontFamily="Source Code Pro" FontSize="22" />
-            
-            
-            <Button Content="Print"  FontFamily="Source Code Pro" FontSize="20" Grid.Column="0" Grid.Row="7" Click="Button_Click_2"/>
-            <Button Content="Add"  Click="Button_Click" FontFamily="Source Code Pro" FontSize="22" TabIndex="4" Grid.Column="1" Grid.Row="7"/>
+            <TextBox x:Name="total_text_box" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="165"  Height="24" FontFamily="Source Code Pro" FontSize="22" KeyDown="total_text_box_KeyDown" TextChanged="total_text_box_TextChanged" LostFocus="total_text_box_LostFocus" />
+
+
+            <Button Content="Print"  FontFamily="Source Code Pro" FontSize="20" Grid.Column="0" Grid.Row="7" Click="Button_Click_3"/>
+            <Button Content="Add"  Click="Button_Click" FontFamily="Source Code Pro" FontSize="22" TabIndex="4" Grid.Column="1" Grid.Row="7" Margin="0,0,10,0"/>
+            <CheckBox  IsChecked="True" x:Name="ckname" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="2" Height="16" Width="16"/>
+            <CheckBox  IsChecked="True" x:Name="cktWeight" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" Height="16" Width="16"/>
+            <CheckBox  IsChecked="True" x:Name="ckratti" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2" Height="16" Width="16"/>
+            <CheckBox  IsChecked="True" x:Name="ckpGold" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3" Height="16" Width="16"/>
+            <CheckBox  IsChecked="True" x:Name="ckngRate" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4" Height="16" Width="16"/>
+            <CheckBox  IsChecked="True" x:Name="cklabor" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5" Height="16" Width="16"/>
+            <CheckBox  IsChecked="True"  x:Name="cktotal" HorizontalAlignment="Left" Margin="10,0,0,0"  VerticalAlignment="Center" Grid.Column="2" Grid.Row="6" Height="16" Width="16"/>
+            <Image Grid.Column="3" HorizontalAlignment="Left" Height="30" Grid.Row="1"  Visibility="Visible"  Margin="0,3,0,0" VerticalAlignment="Top" Width="100" Source="/Resources/imgTake_gold1.jpg" x:Name="img_TakeGold"/>
+            <Image Grid.Column="3" HorizontalAlignment="Left" Height="30"  Margin="0,3,0,0" Grid.Row="1"   Visibility="Hidden" VerticalAlignment="Top" Width="100" Source="/Resources/imgGive_gold.jpg" x:Name="img_GiveGold"/>
+            <Image Grid.Column="3" HorizontalAlignment="Left" Height="30" Margin="0,3,0,0" Grid.Row="6" Visibility="Visible" VerticalAlignment="Top" Width="100" Source="/Resources/imgGive_money1.jpg" x:Name="img_Givemoney"/>
+            <Image HorizontalAlignment="Left" Height="30" Margin="0,3,0,0"  Visibility="Hidden" VerticalAlignment="Top" Width="100" Source="/Resources/imgTake_money1.jpg" x:Name="img_Takemoney" Grid.Column="3" Grid.Row="6"/>
+            <Button Grid.Column="2" Content="X" Grid.Row="7" IsCancel="True" Height="36" Click="Button_Click_4">
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FFFFB4B4" Offset="1"/>
+                    </RadialGradientBrush>
+                </Button.Background>
+            </Button>
 
 
         </Grid>

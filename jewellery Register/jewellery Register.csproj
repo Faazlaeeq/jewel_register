@@ -8,4 +8,26 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resources\imgGive_gold.jpg" />
+    <None Remove="Resources\imgGive_money1.jpg" />
+    <None Remove="Resources\imgTake_gold1.jpg" />
+    <None Remove="Resources\imgTake_money1.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\imgGive_gold.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\imgGive_money1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\imgTake_gold1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\imgTake_money1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
 </Project>
