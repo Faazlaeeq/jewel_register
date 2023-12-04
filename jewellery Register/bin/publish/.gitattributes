@@ -2,4 +2,4 @@
 *.application binary
 *.deploy binary
 *  -text
-*.json.deploy binary
+*.json binary
