@@ -554,8 +554,19 @@ namespace jewellery_Register
             // Call PrintDocument method to send document to printer  
             documentView dwin=new documentView(doc); 
             dwin.Width = 288;
-            dwin.Show();    
-            //printDlg.PrintDocument(idpSource.DocumentPaginator, "Hello WPF Printing.");
+            dwin.Show();
+           
+
+            bool? print = printDlg.ShowDialog();
+            if (print != null)
+            {
+                if ((print ?? false))
+                {
+                    printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing Reciept.");
+                    //printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing.");
+                }
+
+            }
         }
         public FlowDocument CreateFlowDocument(DateTime date, Dictionary<string, bool> goldAC,Dictionary<string,bool> cashAC)
         {
