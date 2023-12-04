@@ -3,5 +3,3 @@
 *.deploy binary
 *  -text
 *.json binary
-jewellery Register.deps.json.deploy binary
-jewellery Register.deps.json text
