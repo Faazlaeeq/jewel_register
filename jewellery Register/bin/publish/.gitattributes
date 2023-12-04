@@ -2,3 +2,4 @@
 *.application binary
 *.deploy binary
 *  -text
+jewellery Register.deps.json -text
