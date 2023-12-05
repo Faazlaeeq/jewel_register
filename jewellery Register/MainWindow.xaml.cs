@@ -637,12 +637,12 @@ namespace jewellery_Register
                 table.Columns.Add(new TableColumn());
 
             }
-            if (goldAC["Ratti"] == true)
+            if (goldAC["Gold"] == true)
             {
                 table.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.8)) });
 
             }
-            if (goldAC["Gold"] == true)
+            if (goldAC["Ratti"] == true)
             {
                 table.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.8)) });
 
@@ -673,13 +673,13 @@ namespace jewellery_Register
             {
                 headerRow.Cells.Add(new TableCell(new Paragraph(new Run("Name"))));
             }
-            if (goldAC["Ratti"]==true)
-            {
-                headerRow.Cells.Add(new TableCell(new Paragraph(new Run("Ratti"))));
-            }
             if (goldAC["Gold"]==true)
             {
                 headerRow.Cells.Add(new TableCell(new Paragraph(new Run("Gold"))));
+            }
+            if (goldAC["Ratti"]==true)
+            {
+                headerRow.Cells.Add(new TableCell(new Paragraph(new Run("Ratti"))));
             }
             if (goldAC["Pure"]==true)
             {
@@ -709,15 +709,15 @@ namespace jewellery_Register
                 {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.name))));
                 }
-                if (goldAC["Ratti"]==true)
-                {
-                    productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.ratti))));
-                }
                 if (goldAC["Gold"]==true)
                 {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.total_weight))));
                 }
 
+                if (goldAC["Ratti"]==true)
+                {
+                    productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.ratti))));
+                }
                 if (goldAC["Pure"]==true)
                 {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.goldStatus))));
