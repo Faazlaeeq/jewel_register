@@ -556,7 +556,7 @@ namespace jewellery_Register
             // Call PrintDocument method to send document to printer  
             documentView dwin=new documentView(doc); 
             dwin.Width = 288;
-            dwin.Show();
+            //dwin.Show();
            
 
             bool? print = printDlg.ShowDialog();
@@ -565,7 +565,7 @@ namespace jewellery_Register
                 if ((print ?? false))
                 {
                     printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing Reciept.");
-                    //printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing.");
+                    printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing.");
                 }
 
             }
