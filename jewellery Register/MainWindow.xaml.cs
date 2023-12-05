@@ -458,24 +458,26 @@ namespace jewellery_Register
                 img_TakeGold.Visibility = Visibility.Visible;
                 img_GiveGold.Visibility = Visibility.Hidden;
             }
-            validateInput(e);
+            validateInput(sender,e);
         }
 
-        void validateInput(KeyEventArgs e)
+        void validateInput(object sender,KeyEventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
             if (!((e.Key >= Key.D0 && e.Key <= Key.D9) ||
                 (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) ||
                 e.Key == Key.Back ||
                 e.Key == Key.Delete ||
                 e.Key == Key.Decimal ||
-                e.Key == Key.Tab))
+                e.Key == Key.Tab
+                ))
             {
                 // Suppress the key press if it's not a valid input
                 e.Handled = true;
             }
 
             // Allow only one decimal point
-            if (e.Key == Key.Decimal && total_weight_text_box.Text.Contains("."))
+            if (e.Key == Key.Decimal && textBox.Text.Contains("."))
             {
                 // Suppress the key press if there's already a decimal point
                 e.Handled = true;
@@ -484,13 +486,13 @@ namespace jewellery_Register
 
         private void ratti_text_box_KeyDown(object sender, KeyEventArgs e)
         {
-            validateInput(e);
+            validateInput(sender,e);
 
         }
 
         private void gold_rate_text_box_KeyDown(object sender, KeyEventArgs e)
         {
-            validateInput(e);
+            validateInput(sender,e);
 
         }
 
@@ -881,7 +883,7 @@ namespace jewellery_Register
                     }
                 }
             }
-            validateInput(e);
+            validateInput(sender,e);
         }
 
         private void total_text_box_TextChanged(object sender, TextChangedEventArgs e)
