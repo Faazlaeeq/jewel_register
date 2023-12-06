@@ -545,6 +545,7 @@ namespace jewellery_Register
             cashAllowedColumns.Add("Name", ckname.IsChecked ?? true);
             cashAllowedColumns.Add("Labor", cklabor.IsChecked ?? true);
             cashAllowedColumns.Add("Total", cktotal.IsChecked ?? true);
+            cashAllowedColumns.Add("Gold Rate", cktotal.IsChecked ?? true);
 
 
 
@@ -556,19 +557,19 @@ namespace jewellery_Register
             // Call PrintDocument method to send document to printer  
             documentView dwin=new documentView(doc); 
             dwin.Width = 288;
-            //dwin.Show();
-           
+            dwin.Show();
 
-            bool? print = printDlg.ShowDialog();
-            if (print != null)
-            {
-                if ((print ?? false))
-                {
-                    printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing Reciept.");
-                    printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing.");
-                }
 
-            }
+            //bool? print = printDlg.ShowDialog();
+            //if (print != null)
+            //{
+            //    if ((print ?? false))
+            //    {
+            //        printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing Reciept.");
+            //        printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing.");
+            //    }
+
+            //}
         }
         public FlowDocument CreateFlowDocument(DateTime date, Dictionary<string, bool> goldAC,Dictionary<string,bool> cashAC)
         {
@@ -596,9 +597,11 @@ namespace jewellery_Register
             // Add the subheading to the flow document
             flowDoc.Blocks.Add(subheading);
 
-            if (DataItem != null)
+            string? goldrate = DataItem.FirstOrDefault((i) => i.gold_rate != null)?.gold_rate;
+
+            if (cashAC["Gold Rate"])
             {
-                Paragraph goldRateParagraph = new Paragraph(new Run("Gold Rate: " + DataItem[0].gold_rate.ToString()));
+                Paragraph goldRateParagraph = new Paragraph(new Run("Gold Rate: " + goldrate ?? "-"));
                 goldRateParagraph.TextAlignment = TextAlignment.Left;
                 goldRateParagraph.FontSize = 16;
                 goldRateParagraph.FontWeight = FontWeights.Bold;
@@ -730,7 +733,6 @@ namespace jewellery_Register
                 rowGroup.Rows.Add(productRow);
 
                 // Update the total sum by multiplying the price and quantity of the product
-                total += double.Parse(item.total);
             }
 
 
@@ -766,7 +768,7 @@ namespace jewellery_Register
             {
 
                 table2.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.3)) });
-                table2.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.8)) });
+                table2.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 1.2)) });
 
             }
 
@@ -843,10 +845,12 @@ namespace jewellery_Register
             flowDoc.Blocks.Add(table2);
 
             // Create a paragraph for the total sum and set its properties
-            Paragraph totalParagraph = new Paragraph(new Run("Total Amount: " + total.ToString("C")));
+            Paragraph totalParagraph = new Paragraph(new Run("Total Amount: " + total.ToString("C0", new System.Globalization.CultureInfo("ur-PK"))));
             totalParagraph.TextAlignment = TextAlignment.Right;
-            totalParagraph.FontSize = 16;
+            totalParagraph.FontSize = 18;
+            totalParagraph.FontFamily=new FontFamily("Times New Roman");
             totalParagraph.FontWeight = FontWeights.Bold;
+            totalParagraph.Margin = new Thickness(10, 10, 10, 10);
 
 
 
