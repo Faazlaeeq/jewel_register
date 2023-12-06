@@ -156,264 +156,23 @@ namespace jewellery_Register
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            PrintDialog printDlg = new PrintDialog();
-            FlowDocument doc = new FlowDocument(new Paragraph(new Run("Some text goes here")));
-
-            doc.Name = "FlowDoc";
-
-            IDocumentPaginatorSource idpSource = doc;
-
-            printDlg.ShowDialog();
-
+            
 
         }
-        private FlowDocument CreateFlowDocument()
-        {
-            // Create a FlowDocument  
-            FlowDocument doc = new FlowDocument();
-            // Create a Section  
-            Section sec = new Section();
-            // Create first Paragraph  
-            Paragraph p1 = new Paragraph();
-            // Create and add a new Bold, Italic and Underline  
-            Bold bld = new Bold();
-            bld.Inlines.Add(new Run("First Paragraph"));
-            Italic italicBld = new Italic();
-            italicBld.Inlines.Add(bld);
-            Underline underlineItalicBld = new Underline();
-            underlineItalicBld.Inlines.Add(italicBld);
-            // Add Bold, Italic, Underline to Paragraph  
-            p1.Inlines.Add(underlineItalicBld);
-            // Add Paragraph to Section  
-            sec.Blocks.Add(p1);
-            // Add Section to FlowDocument  
-            doc.Blocks.Add(sec);
-            return doc;
-        }
+        
 
 
 
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            FlowDocument doc = new FlowDocument();  
-            documentView docWin = new documentView(doc);
-            docWin.Title = "Print";
-            docWin.Width = 288;
-
-            ScrollViewer sv = new ScrollViewer();
-
-            Grid myGrid = myGridInit();
-
-            // Heading: Row 0
-            TextBlock heading = new TextBlock();
-            heading.Text = "MW Gold Laboratory";
-            heading.FontSize = 20;
-            heading.FontWeight = FontWeights.Bold;
-            heading.Height = 50;
-            heading.HorizontalAlignment = HorizontalAlignment.Center;
-            Grid.SetColumnSpan(heading, 3);
-            Grid.SetRow(heading, 0);
-            myGrid.Children.Add(heading);
-
-            //Date : Row 1
-            TextBlock dateTxt = new TextBlock();
-            dateTxt.FontSize = 16;
-            dateTxt.FontWeight = FontWeights.Bold;
-            dateTxt.Text = "Date: " + DateTime.Now;
-            Grid.SetRow(dateTxt, 1);
-            Grid.SetColumnSpan(dateTxt, 3);
-            myGrid.Children.Add(dateTxt);
-
-            //Gold Rate : Row 2
-            TextBlock goldRateTxt = new TextBlock();
-            goldRateTxt.FontSize = 16;
-            goldRateTxt.FontWeight = FontWeights.Bold;
-            goldRateTxt.Text = "Gold Rate: " + gold_rate_text_box.Text;
-            Grid.SetRow(goldRateTxt, 2);
-            Grid.SetColumnSpan(goldRateTxt, 3);
-            myGrid.Children.Add(goldRateTxt);
-
-          
-
-            double totalPrice = 0;
-
-            ObservableCollection<Item> dItems = new ObservableCollection<Item>();
-
-            
-            foreach (Item item in DataItem)
-            {
-                dItems.Add(new DisplayItem
-                {
-                    Name = item.name,
-
-                    PureGold = item.pure_gold,
-                    Ratti = item.ratti,
-                    Gold_Weight = item.total_weight,
-
-                });
-            }
-
-            DataGrid dataGrid = new DataGrid();
-
-            dataGrid.ItemsSource = dItems;
-            dataGrid.FontWeight = FontWeights.Bold;
-            RowDefinition rowDef2 = new RowDefinition();
-            myGrid.RowDefinitions.Add(rowDef2);
-            Grid.SetRow(dataGrid, 3);
-            Grid.SetColumnSpan(dataGrid, 3);
-            dataGrid.DataContext = dItems;
-            try{
-                if (ckname.IsChecked == false && dataGrid.Columns[0] != null)
-                {
-                    dataGrid.Columns[0].Visibility = Visibility.Hidden;
-                }
-                if (ckratti.IsChecked == false && dataGrid.Columns[1] != null)
-                {
-                    dataGrid.Columns[1].Visibility = Visibility.Hidden;
-                }
-                if (cktWeight.IsChecked == false && dataGrid.Columns[2] != null)
-                {
-                    dataGrid.Columns[2].Visibility = Visibility.Hidden;
-                }
-                if (ckpGold.IsChecked == false && dataGrid.Columns[3] != null)
-                {
-                    dataGrid.Columns[3].Visibility = Visibility.Hidden;
-                }
-            }
-            catch(Exception error)
-            {
-                MessageBox.Show(error.ToString());
-            }
-            MessageBox.Show( "Columns Count:"+dataGrid.Columns.Count.ToString());
-
-           
-            myGrid.Children.Add(dataGrid);
-            myGrid.ShowGridLines = false;
-
-            
-
-
-
-            if (gold_rate_text_box.Text != "")
-            {
-                ObservableCollection<Cash> dCash = new ObservableCollection<Cash>();
-
-                foreach (Item item in DataItem)
-                {
-                    dCash.Add(new Cash
-                    {
-                        Name = item.name,
-
-                        Labor = item.labor,
-                        Total = item.total
-                    });
-                    totalPrice += double.Parse(item.total);
-                }
-
-                DataGrid dataGrid2 = new DataGrid();
-                dataGrid2.SetBinding(ItemsControl.ItemsSourceProperty, new System.Windows.Data.Binding { Source = dCash });
-                
-                dataGrid2.ItemsSource = dCash;
-                dataGrid2.DataContext = dCash;
-                dataGrid2.FontWeight = FontWeights.Bold;
-                //dataGrid2.ColumnFromDisplayIndex(0).Visibility=Visibility.Hidden;
-                if(ckname.IsChecked == true && dataGrid2.Columns[0] != null )
-                {
-                    dataGrid2.Columns[0].Visibility = Visibility.Hidden;
-                }
-                if (cklabor.IsChecked == true && dataGrid2.Columns[1] != null)
-                {
-                    dataGrid2.Columns[1].Visibility = Visibility.Hidden;
-                }
-                if (cktotal.IsChecked == true && dataGrid2.Columns[2] != null)
-                {
-                    dataGrid2.Columns[2].Visibility = Visibility.Hidden;
-                }
-
-
-
-                RowDefinition rowDef8 = new RowDefinition();
-                myGrid.RowDefinitions.Add(rowDef8);
-                Grid.SetRow(dataGrid2, 4);
-                Grid.SetColumnSpan(dataGrid2, 3);
-                myGrid.Children.Add(dataGrid2);
-                myGrid.ShowGridLines = false;
-
-
-
-
-            }
-
-            foreach (var column in dataGrid.Columns)
-            {
-                Debug.WriteLine($"Column: {column.Header}, DisplayIndex: {column.DisplayIndex}");
-            }
-
-            RowDefinition rowDef7 = new RowDefinition();
-            myGrid.RowDefinitions.Add(rowDef7);
-            RowDefinition rowDef4 = new RowDefinition();
-            myGrid.RowDefinitions.Add(rowDef4);
-
-
-            TextBlock txt12 = new TextBlock();
-            txt12.FontSize = 16;
-            txt12.FontWeight = FontWeights.Bold;
-            txt12.Text = "Total Price: " + totalPrice.ToString();
-            Grid.SetRow(txt12, 5);
-            Grid.SetColumnSpan(txt12, 3);
-            myGrid.Children.Add(txt12);
-
-
-
-
-            docWin.Content = myGrid;
-            
-            docWin.Show();
-            PrintDialog printDlg = new PrintDialog();
-            bool? print = printDlg.ShowDialog();
-            if (print != null)
-            {
-                if ((print ?? false))
-                {
-                    printDlg.PrintVisual(myGrid, "receipt printing ..");
-                    printDlg.PrintVisual(myGrid, "receipt printing ..");
-                }
-
-            }
         }
 
         private void setvisibility()
         {
 
         }
-        private Grid myGridInit()
-        {
-            Grid myGrid = new Grid();
-
-            myGrid.Width = 288;
-            myGrid.HorizontalAlignment = HorizontalAlignment.Left;
-            myGrid.VerticalAlignment = VerticalAlignment.Top;
-
-
-            // Define the Columns
-            ColumnDefinition colDef1 = new ColumnDefinition();
-            ColumnDefinition colDef2 = new ColumnDefinition();
-            ColumnDefinition colDef3 = new ColumnDefinition();
-            myGrid.ColumnDefinitions.Add(colDef1);
-            myGrid.ColumnDefinitions.Add(colDef2);
-            myGrid.ColumnDefinitions.Add(colDef3);
-
-            // Define the Rows
-            RowDefinition rowDef1 = new RowDefinition();
-            myGrid.RowDefinitions.Add(rowDef1);
-            RowDefinition rowDef3 = new RowDefinition();
-
-            myGrid.RowDefinitions.Add(rowDef3);
-
-            return myGrid;
-        }
-
+        
         private void gold_rate_text_box_TextChanged(object sender, TextChangedEventArgs e)
         {
             calcTotal();
@@ -545,7 +304,7 @@ namespace jewellery_Register
             cashAllowedColumns.Add("Name", ckname.IsChecked ?? true);
             cashAllowedColumns.Add("Labor", cklabor.IsChecked ?? true);
             cashAllowedColumns.Add("Total", cktotal.IsChecked ?? true);
-            cashAllowedColumns.Add("Gold Rate", cktotal.IsChecked ?? true);
+            cashAllowedColumns.Add("Gold Rate", ckgRate.IsChecked ?? true);
 
 
 
