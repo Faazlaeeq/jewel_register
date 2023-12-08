@@ -37,7 +37,7 @@
             </Grid.ColumnDefinitions>
             <Label Content="Jewellery" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="36" Width="104" FontFamily="Source Code Pro" FontSize="22"/>
 
-            <ComboBox x:Name="jewel_text_box" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="165" SelectedIndex="0" Height="32" FontFamily="Source Code Pro" FontSize="22" TabIndex="0" Grid.Column="1">
+            <ComboBox x:Name="jewel_text_box" IsEditable="True" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="165" SelectedIndex="0" Height="32" FontFamily="Source Code Pro" FontSize="22" TabIndex="0" Grid.Column="1">
                 <ComboBoxItem x:Name="comboBoxItem" Content="Bali" />
                 <ComboBoxItem Content="Ring"/>
                 <ComboBoxItem Content="D Bali"/>
@@ -46,7 +46,6 @@
                 <ComboBoxItem Content="Chain"/>
                 <ComboBoxItem Content="Bracelet"/>
                 <ComboBoxItem Content="Testing"/>
-                <TextBox  Width="150"/>
             </ComboBox>
             <Label Content="Total Weight" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="36" Width="137" FontFamily="Source Code Pro" FontSize="22" />
             <TextBox x:Name="total_weight_text_box" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="165" TextChanged="total_weight_text_box_TextChanged" Uid="tw" Height="24" FontFamily="Source Code Pro" FontSize="22" TabIndex="1" KeyDown="total_weight_text_box_KeyDown" GotFocus="total_weight_text_box_GotFocus" />

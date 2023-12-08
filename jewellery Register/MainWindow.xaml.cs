@@ -51,7 +51,7 @@ namespace jewellery_Register
                     String total = total_text_box.Text;
                     String labor = labor_text_box.Text;
                     String goldStatus = img_TakeGold.Visibility==Visibility.Visible?"L":"D";  
-                    String cashStatus = img_Givemoney.Visibility == Visibility.Visible ? "L" : "D";
+                    String cashStatus = img_Takemoney.Visibility == Visibility.Visible ? "L" : "D";
 
                     DataItem.Add(new Item
                     {
@@ -637,10 +637,10 @@ namespace jewellery_Register
                 if (IsInitialized)
                 {
 
-                    if (gold_rate_text_box.Text != "")
+                    if (gold_rate_text_box.Text != "" && total_text_box.Text!="")
                     {
                         double rate = double.Parse(gold_rate_text_box.Text);
-                        double pureGold = ((double.Parse(total_text_box.Text) / double.Parse(gold_rate_text_box.Text)) * 11.664);
+                        double pureGold = Math.Abs( double.Parse(pure_gold_textbox.Text)-((double.Parse(total_text_box.Text) / double.Parse(gold_rate_text_box.Text)) * 11.664));
                         pure_gold_textbox.Text = Math.Round(pureGold,2).ToString();
 
                     }

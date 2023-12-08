@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="jewellery Register.exe" version="1.0.0.35" publicKeyToken="1e2047d3ee286d90" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Launcher" version="8.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="Launcher.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Launcher.exe" size="17376">
+      <assemblyIdentity name="Launcher" version="8.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>bNAr73HxJICA8ffVBoOzguOOxY/Z+seFM607oDXAXYQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="jewellery Register.deps.json" size="950">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>TdjkW3xrbxloS6hT/42dSLuH1qH/1r9fFmq+NgGLw00=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="jewellery Register.dll" size="82400">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>9wbmoc+MZ7N0D+5u65RPKH9+DQqYgrf7ROLlNpYYrJQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="jewellery Register.exe" size="151008">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>utWWrNIej1lYwPybLd+3NqBqFioBH9spTxNe7QndNPU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="jewellery Register.runtimeconfig.json" size="372">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>HsoPDHAHCqg7tgnkt0mybctECXhDJgMnJjlHIiJKCYo=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=FAAZ_LAPTOP\FaazLaeeq" issuerKeyHash="d129819b3f1109a496127f980322959cf22281dd" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>9uKbKM9QZ/u6aT8ADlQ3j5JMqyGVmn+ZYr9kG1GWuZ0=</DigestValue></Reference></SignedInfo><SignatureValue>mOxuvVysd/KGCuacgtzq3Stq7t1Ycewf8x46KcHrQtRaTr09+kEKRUH/ZGIv0Vu8vEd8txPw/XCbCn3wYJihWhX1AWWLd8QK/gNGZhQYQLvukxw9toTH7Z1zJ470tkq8BjwKgboyTK/xtgW9nTmZeTpv526K3kDK/0Ky0cbmPl4=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>um0w89/WFfewvZDtOiPR8KXevh7vZzaQ+lIsoB/xp5o1A0y3/Q57yAG5ObXzswXL7tTYmSl8x8Ip6JOuoEiDETnu/4hh7PHvNxMQWvqyoSCvLguQeeQe69CuofGNJx43ppS/AJtoD4OyGULexT3FFxPqfUjh84GVYZgKYfv3140=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="9db996511b64bf62997f9a9521ab4c928f37540e003f69bafb6750cf289be2f6" Description="" Url=""><as:assemblyIdentity name="jewellery Register.exe" version="1.0.0.35" publicKeyToken="1e2047d3ee286d90" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=FAAZ_LAPTOP\FaazLaeeq</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>8q6f31RPmvu/lFXkZw7Z7sDFgCR1kjNK4LHcgPO7PKw=</DigestValue></Reference></SignedInfo><SignatureValue>WBPGhcFin5QvVBQ+8osR48VSU5Qs6pBGysWZvkm1HjruF5Wez7u43OV8k0BoXPBl9A3lvcUvh1AhHpxeknvVa8pfLGIIq8kplzffJtdquo5kEJIOyiBvupMEKsgIFHYRTpUkZYOMKnsrehlFHbmNoyIp7gv0ndvNo449fOQCrWI=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>um0w89/WFfewvZDtOiPR8KXevh7vZzaQ+lIsoB/xp5o1A0y3/Q57yAG5ObXzswXL7tTYmSl8x8Ip6JOuoEiDETnu/4hh7PHvNxMQWvqyoSCvLguQeeQe69CuofGNJx43ppS/AJtoD4OyGULexT3FFxPqfUjh84GVYZgKYfv3140=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB7TCCAVagAwIBAgIQGRmyV12aJphPv3sTbcszQDANBgkqhkiG9w0BAQsFADA1MTMwMQYDVQQDHioARgBBAEEAWgBfAEwAQQBQAFQATwBQAFwARgBhAGEAegBMAGEAZQBlAHEwHhcNMjMxMjAzMTMyNTMxWhcNMjQxMjAyMTkyNTMxWjA1MTMwMQYDVQQDHioARgBBAEEAWgBfAEwAQQBQAFQATwBQAFwARgBhAGEAegBMAGEAZQBlAHEwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALptMPPf1hX3sL2Q7Toj0fCl3r4e72c2kPpSLKAf8aeaNQNMt/0Oe8gBuTm187MFy+7U2JkpfMfCKeiTrqBIgxE57v+IYezx7zcTEFr6sqEgry4LkHnkHuvQrqHxjSceN6aUvwCbaA+DshlC3sU9xRcT6n1I4fOBlWGYCmH799eNAgMBAAEwDQYJKoZIhvcNAQELBQADgYEAL12dNnwX9XawVxqPZcfLEHY7tr6yocP3gbQ18PC/S83rHbwdNIvB2FS01Gra4IDlL/Z+b0QUIevyZNJ26yMZam1Ay8DCBMWoHlMiDsjv3qEBiG2J8jDxc02VrheOzxx6MS/uSvuFYfFbLvkLnPrLeqpB69xXfly4OJnDrRZ5EF8=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
