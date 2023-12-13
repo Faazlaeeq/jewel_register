@@ -16,6 +16,7 @@ namespace jewellery_Register
         public string ratti { get; set; }
 
         public string pure_gold { get; set; }
+        public string gold_amount { get; set; }
 
         public string gold_rate { get; set; }
         public string labor { get; set; }

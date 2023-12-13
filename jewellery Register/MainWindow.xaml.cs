@@ -19,7 +19,8 @@ namespace jewellery_Register
     public partial class MainWindow : Window
     {
         public ObservableCollection<Item> DataItem { get; set; }
-
+        double calculatedGold=0;
+        double subtractedGold = 0;
 
 
         List<Item> items = new List<Item>();
@@ -58,6 +59,7 @@ namespace jewellery_Register
                         id = DataItem.Count + 1,
                         name = name,
                         pure_gold = pureGold,
+                        gold_amount = Math.Round(subtractedGold,2).ToString(),
                         ratti = ratti,
                         total_weight = totalWeight,
                         gold_rate = goldRate,
@@ -483,7 +485,7 @@ namespace jewellery_Register
                 if (goldAC["Pure"]==true)
                 {
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.goldStatus))));
-                    productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.pure_gold))));
+                    productRow.Cells.Add(new TableCell(new Paragraph(new Run($" {calculatedGold}\n-{subtractedGold}\n-------\n{item.pure_gold}"))));
                 }
                
 
@@ -520,12 +522,13 @@ namespace jewellery_Register
             }
             if (cashAC["Labor"] == true)
             {
-                table2.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.8)) });
+                table2.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.6)) });
 
             }
             if (cashAC["Total"] == true)
             {
 
+                table2.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.6)) });
                 table2.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 0.3)) });
                 table2.Columns.Add(new TableColumn() { Width = new GridLength(((pageWidth / gColCount) * 1.2)) });
 
@@ -553,6 +556,7 @@ namespace jewellery_Register
             }
             if (cashAC["Total"] == true)
             {
+                headerRow2.Cells.Add(new TableCell(new Paragraph(new Run("G Amount"))));
                 headerRow2.Cells.Add(new TableCell(new Paragraph(new Run("L/D"))));
                 headerRow2.Cells.Add(new TableCell(new Paragraph(new Run("Total"))));
             }
@@ -582,6 +586,7 @@ namespace jewellery_Register
                 }
                 if (cashAC["Total"] == true)
                 {
+                    productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.gold_amount))));
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.cashStatus))));
                     productRow.Cells.Add(new TableCell(new Paragraph(new Run(item.total))));
                 }
@@ -640,6 +645,8 @@ namespace jewellery_Register
                     if (gold_rate_text_box.Text != "" && total_text_box.Text!="")
                     {
                         double rate = double.Parse(gold_rate_text_box.Text);
+                        calculatedGold = double.Parse(pure_gold_textbox.Text);
+                        subtractedGold = Math.Round(((double.Parse(total_text_box.Text) / double.Parse(gold_rate_text_box.Text)) * 11.664),2);
                         double pureGold = Math.Abs( double.Parse(pure_gold_textbox.Text)-((double.Parse(total_text_box.Text) / double.Parse(gold_rate_text_box.Text)) * 11.664));
                         pure_gold_textbox.Text = Math.Round(pureGold,2).ToString();
 
