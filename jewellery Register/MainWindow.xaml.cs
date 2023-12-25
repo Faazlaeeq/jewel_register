@@ -321,16 +321,16 @@ namespace jewellery_Register
             dwin.Show();
 
 
-            //bool? print = printDlg.ShowDialog();
-            //if (print != null)
-            //{
-            //    if ((print ?? false))
-            //    {
-            //        printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing Reciept.");
-            //        printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing.");
-            //    }
+            bool? print = printDlg.ShowDialog();
+            if (print != null)
+            {
+                if ((print ?? false))
+                {
+                    printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing Reciept.");
+                    printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing.");
+                }
 
-            //}
+            }
         }
         public FlowDocument CreateFlowDocument(DateTime date, Dictionary<string, bool> goldAC,Dictionary<string,bool> cashAC)
         {
